@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>NMU Attendance Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+</head>
+
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="#" class="logo">
+            <img src="logo.png" width="150" height="120">
+
+          </a></li>
+        <li><a href="Dashboard.html">
+            <i class="fas fa-th"></i>
+            <span class="nav-item">Dashboard</span>
+          </a></li>
+        </a></li>
+
+        </a></li>
+        <li><a href="Attendance.html">
+            <i class="fas fa-pen"></i>
+            <span class="nav-item">Attendance</span>
+          </a></li>
+
+        </a></li>
+        <li><a href="Report.html">
+            <i class="fas fa-file"></i>
+            <span class="nav-item">Report</span>
+
+        <li><a href="#" class="logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="nav-item">Log out</span>
+          </a></li>
+
+        <li><a href="login.html" class="logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="nav-item">Log out</span>
+          </a></li>
+      </ul>
+    </nav>
+
+
+    <div class="attendance-list">
+      <h1>Attendance list</h1>
+      <div class="form-design">
+        <form method="POST" action="insert_attendance.php">
+          <input class="st_AttendanceID" type="text" name="attendance_id" value="" placeholder="Attendance ID"><br>
+          <input class="st_Statue" type="text" name="status" value="" placeholder="Status"><br>
+          <input class="st_CourseID" type="text" name="course_id" value="" placeholder="Course ID"><br>
+          <input class="st_StudentID" type="text" name="student_id" value="" placeholder="Student ID"><br>
+          <input class="st_Date" type="text" name="date" value="" placeholder="Date"><br>
+          <button type="submit">Insert</button>
+        </form>
+      </div>
+
+      <div class="table-design">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Attendance ID</th>
+              <th>Statue</th>
+              <th>Course ID </th>
+              <th>Student ID</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+
+          <script>
+            var stdBtn = document.querySelector("button");
+            stdBtn.addEventListener("Insert", function () {
+
+              var stAttendanceID = document.querySelector(".st_AttendanceID").value;
+              var stStatue = document.querySelector(".st_Statue").value;
+              var stCourseID = document.querySelector(".st_CourseID").value;
+              var stStudentID = document.querySelector(".st_StudentID").value;
+              var stDate = document.querySelector(".st_Date").value;
+
+              var display = document.querySelector(".data_table");
+              var row = display.insertRow(display.length);
+
+              var td1 = row.insertCell(0);
+              var td2 = row.insertCell(1);
+              var td3 = row.insertCell(2);
+              var td4 = row.insertCell(3);
+              var td5 = row.insertCell(4);
+
+
+              td1.innerHTML = stAttendanceID;
+              td2.innerHTML = stStatue;
+              td3.innerHTML = stCourseID;
+              td4.innerHTML = stStudentID;
+              td5.innerHTML = stDate;
+            })
+
+          </script>
+          <style>
+            .table-design,
+            .form-design {
+              float: left;
+              width: 45%;
+            }
+
+            .form-design {
+              background: #ccc;
+              padding: 15px;
+            }
+
+            .form-design input {
+              width: 100%;
+              padding: 10px;
+              margin-bottom: 10px;
+              margin-right: 15px;
+            }
+
+            .table-design {
+              padding: 0 15px;
+            }
+
+            .table-design table {
+              width: 100%;
+            }
+
+            .table-design table tr {
+              border: solid 1px #ccc;
+            }
+
+            .table-design table tr td,
+            .table-design table tr th {
+              border-right: solid 1px #ccc;
+              padding: 10px;
+            }
+
+            .form-design button {
+              background: #A52A2A;
+              padding: 10px 25px;
+              color: #fff;
+              margin: 10px 0;
+              border: none;
+            }
+          </style>
+      </div>
+
+      <body>
+
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Faculty members page</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="#" class="logo">
+            <img src="logo.png" width="150" height="120">
+
+
+          </a></li>
+        <li><a href="Dashboard.html">
+            <i class="fas fa-th"></i>
+            <span class="nav-item">Dashboard</span>
+          </a></li>
+        </a></li>
+
+        </a></li>
+        <li><a href="Attendance.html">
+            <i class="fas fa-pen"></i>
+            <span class="nav-item">Attendance</span>
+          </a></li>
+
+        </a></li>
+        <li><a href="Report.html">
+            <i class="fas fa-file"></i>
+            <span class="nav-item">Report</span>
+
+        <li><a href="#" class="logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="nav-item">Log out</span>
+          </a></li>
+
+        <li><a href="login.html" class="logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="nav-item">Log out</span>
+          </a></li>
+      </ul>
+    </nav>
+
+
+    <h1 style="color:#A52A2A;">Faculty members</h1>
+
+
+    <div class="form-design">
+      <form method="POST" action="insert_faculty.php">
+        <input class="st_name" type="text" name="full_name" value="" placeholder="Full Name"><br>
+        <input class="st_ationalID" type="text" name="national_id" value="" placeholder="National ID"><br>
+        <input class="st_phonenumber" type="text" name="phone_number" value="" placeholder="Phone number"><br>
+        <input class="st_facultyID " type="text" name="faculty_id" value="" placeholder="Faculty ID "><br>
+        <input class="st_academicemail" type="text" name="academic_email" value="" placeholder="Academic email"><br>
+        <button type="submit">Click</button>
+      </form>
+    </div>
+    <div class="table-design">
+      <table border="1" class="data_table">
+        <tr>
+          <th>Full Name</th>
+          <th>National ID</th>
+          <th>Phone number</th>
+          <th>Faculty ID</th>
+          <th>Academic email</th>
+        </tr>
+      </table>
+    </div>
+
+    <script>
+      var stdBtn = document.querySelector("button");
+      stdBtn.addEventListener("Insert", function () {
+
+        var stName = document.querySelector(".st_name").value;
+        var stNationalID = document.querySelector(".st_ationalID").value;
+        var stPhonenumber = document.querySelector(".st_phonenumber").value;
+        var stFacultyID = document.querySelector(".st_facultyID").value;
+        var stAcademicemail = document.querySelector(".st_academicemail").value;
+
+        var display = document.querySelector(".data_table");
+        var row = display.insertRow(display.length);
+
+        var td1 = row.insertCell(0);
+        var td2 = row.insertCell(1);
+        var td3 = row.insertCell(2);
+        var td4 = row.insertCell(3);
+        var td5 = row.insertCell(4);
+
+        td1.innerHTML = stName;
+        td2.innerHTML = stNationalID;
+        td3.innerHTML = stPhonenumber;
+        td4.innerHTML = stFacultyID;
+        td5.innerHTML = stAcademicemail;
+      })
+
+    </script>
+
+    <style>
+      .table-design,
+      .form-design {
+        float: left;
+        width: 45%;
+      }
+
+      .form-design {
+        background: #ccc;
+        padding: 15px;
+      }
+
+      .form-design input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        margin-right: 15px;
+      }
+
+      .table-design {
+        padding: 0 15px;
+      }
+
+      .table-design table {
+        width: 100%;
+      }
+
+      .table-design table tr {
+        border: solid 1px #ccc;
+      }
+
+      .table-design table tr td,
+      .table-design table tr th {
+        border-right: solid 1px #ccc;
+        padding: 10px;
+      }
+
+      .form-design button {
+        background: #A52A2A;
+        padding: 10px 25px;
+        color: #fff;
+        margin: 10px 0;
+        border: none;
+      }
+    </style>
+
+</body>
+
+</html>

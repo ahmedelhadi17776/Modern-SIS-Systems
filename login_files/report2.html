@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Report page</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#" class="logo">
+                        <img src="logo.png" width="150" height="120">
+
+
+                    </a></li>
+                <li><a href="Dashboard.html">
+                        <i class="fas fa-th"></i>
+                        <span class="nav-item">Dashboard</span>
+                    </a></li>
+                </a></li>
+
+                </a></li>
+                <li><a href="Attendance.html">
+                        <i class="fas fa-pen"></i>
+                        <span class="nav-item">Attendance</span>
+                    </a></li>
+
+                </a></li>
+                <li><a href="Report.html">
+                        <i class="fas fa-file"></i>
+                        <span class="nav-item">Report</span>
+
+                <li><a href="#" class="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">Log out</span>
+                    </a></li>
+
+                <li><a href="login.html" class="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">Log out</span>
+                    </a></li>
+            </ul>
+        </nav>
+
+
+        <h1 style="color:#A52A2A;">Report</h1>
+
+
+
+        <div class="form-design">
+
+            <button id="exportButton"> Export to Excel</button>
+            </form>
+
+
+            <script src="xlsx.full.min.js"></script>
+            <script src="FileSaver.min.js"></script>
+            <script>
+                document.getElementById('exportButton').addEventListener('click', function () {
+
+                    fetch('dashboard.php')
+                        .then(response => response.json())
+                        .then(data => {
+
+                            const workbook = XLSX.utils.book_new();
+                            const worksheet = XLSX.utils.json_to_sheet(data);
+                            XLSX.utils.book_append_sheet(workbook, worksheet, 'Report');
+                            const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+
+                            const blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                            const fileName = 'Atrendance report.xlsx';
+                            const link = document.createElement('a');
+                            link.href = window.URL.createObjectURL(blob);
+                            link.download = fileName;
+                            link.click();
+                        });
+                });
+            </script>
+
+            <style>
+                .table-design,
+                .form-design {
+                    float: left;
+                    width: 45%;
+                }
+
+                .form-design {
+                    background: #ccc;
+                    padding: 15px;
+                }
+
+                .form-design input {
+                    width: 100%;
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    margin-right: 15px;
+                }
+
+                .table-design {
+                    padding: 0 15px;
+                }
+
+                .table-design table {
+                    width: 100%;
+                }
+
+                .table-design table tr {
+                    border: solid 1px #ccc;
+                }
+
+                .table-design table tr td,
+                .table-design table tr th {
+                    border-right: solid 1px #ccc;
+                    padding: 10px;
+                }
+
+                .form-design button {
+                    background: #A52A2A;
+                    padding: 10px 25px;
+                    color: #fff;
+                    margin: 10px 0;
+                    border: none;
+                }
+            </style>
+
+</body>
+
+</html>

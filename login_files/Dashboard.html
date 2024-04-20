@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>NMU Attendance Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+</head>
+
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="#" class="logo">
+            <img src="logo.png" width="150" height="120">
+          </a></li>
+        <li><a href="Dashboard.html">
+            <i class="fas fa-th"></i>
+            <span class="nav-item">Dashboard</span>
+          </a></li>
+        <li><a href="Attendance.html">
+            <i class="fas fa-pen"></i>
+            <span class="nav-item">Attendance</span>
+          </a></li>
+        <li><a href="Report.html">
+            <i class="fas fa-file"></i>
+            <span class="nav-item">Report</span>
+          </a></li>
+        <li><a href="login.html" class="logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="nav-item">Log out</span>
+          </a></li>
+      </ul>
+    </nav>
+
+    <section class="main">
+      <div class="main-top">
+        <h1>NMU Attendance System</h1>
+        <i class="fas fa-user-cog"></i>
+      </div>
+      <div class="users">
+        <div class="card">
+          <h4><i class="fas fa-user-circle"></i></h4>
+          <a href="Faculty_members.html"><button>Faculty members</button></a>
+        </div>
+        <div class="card">
+          <h4><i class="fas fa-address-card"></i></h4>
+          <a href="Students.html"><button>Students</button></a>
+        </div>
+        <div class="card">
+          <h4><i class="fas fa-list"></i></h4>
+          <a href="Sections.html"><button>Sections</button></a>
+        </div>
+        <div class="card">
+          <h4><i class="fas fa-book"></i></h4>
+          <a href="Courses.html"><button>Courses</button></a>
+        </div>
+      </div>
+
+      <section class="attendance">
+        <div class="attendance-list">
+          <h1>Attendance List</h1>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Student ID</th>
+                <th>Academic Email</th>
+                <th>Course ID</th>
+                <th>Instructor Name</th>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="attendanceTableBody">
+              <?php include("dashboard.php"); ?>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+    <script>
+      // JavaScript code to fetch attendance data dynamically
+      window.addEventListener('DOMContentLoaded', () => {
+        const attendanceTableBody = document.getElementById('attendanceTableBody');
+        const url = 'dashboard.php';
+
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            // Iterate through the data and create table rows
+            data.forEach(item => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td>${item.ID}</td>
+                <td>${item.Name}</td>
+                <td>${item.StudentID}</td>
+                <td>${item.AcademicEmail}</td>
+                <td>${item.CourseID}</td>
+                <td>${item.Instructor}</td>
+                <td>${item.Date}</td>
+                <td>${item.Status}</td>
+              `;
+              attendanceTableBody.appendChild(row);
+            });
+          })
+          .catch(error => console.log(error));
+      });
+    </script>
+
+  </div>
+</body>
+
+</html>
